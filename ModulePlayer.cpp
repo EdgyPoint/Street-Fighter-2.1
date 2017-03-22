@@ -41,6 +41,24 @@ ModulePlayer::ModulePlayer()
 	//Punch animation
 	punch.PushBack({ 19, 272, 64, 91 });
 	punch.PushBack({ 108, 272, 92, 91 });
+	punch.PushBack({ 19, 272, 64, 91 });
+	punch.speed = 0.3f;
+
+	//Kick animation
+	kick.PushBack({ 607, 268, 59, 94 });
+	kick.PushBack({ 689, 267, 66, 92 });
+	kick.PushBack({ 777, 265, 114, 94 });
+	kick.PushBack({ 689, 267, 66, 92 });
+	kick.speed = 0.2f;
+
+	//jump animation
+	punch.PushBack({ 19, 272, 64, 91 });
+	punch.PushBack({ 108, 272, 92, 91 });
+	punch.PushBack({ 19, 272, 64, 91 });
+	punch.PushBack({ 108, 272, 92, 91 });
+	punch.PushBack({ 19, 272, 64, 91 });
+	punch.PushBack({ 108, 272, 92, 91 });
+	punch.PushBack({ 19, 272, 64, 91 });
 	punch.speed = 0.2f;
 }
 
@@ -63,7 +81,7 @@ update_status ModulePlayer::Update()
 
 	int speed = 1;
 
-	if (App->input->keyboard[SDL_SCANCODE_P] == 0)
+	if (!punchflag && !kickflag)
 	{
 		if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 		{
@@ -76,23 +94,51 @@ update_status ModulePlayer::Update()
 			current_animation = &backward;
 			position.x -= speed;
 		}
+	}
 
-		if (App->input->keyboard[SDL_SCANCODE_W] == 1)
+	if ((App->input->keyboard[SDL_SCANCODE_P] == 1 && punchflag == false) || punchflag == true)
+	{
+		if (punchcounter <= 10)
 		{
-			current_animation = &jump;
+			current_animation = &punch;
+			punchflag = true;
+			punchcounter++;
+		}
+		else
+		{
+
+			if (App->input->keyboard[SDL_SCANCODE_P] == 0)
+			{
+				punchcounter = 0;
+				punchflag = false;
+			}
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_P] == 1)
+	if ((App->input->keyboard[SDL_SCANCODE_O] == 1 && kickflag == false) || kickflag == true)
 	{
-		current_animation = &punch;
-	}
+		if (kickcounter <= 20)
+		{
+			current_animation = &kick;
+			kickflag = true;
+			kickcounter++;
+		}
+		else
+		{
 
+			if (App->input->keyboard[SDL_SCANCODE_O] == 0)
+			{
+				kickcounter = 0;
+				kickflag = false;
+			}
+		}
+	}
 	 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 	
+
 	return UPDATE_CONTINUE;
 }

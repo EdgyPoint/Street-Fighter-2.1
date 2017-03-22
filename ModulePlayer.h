@@ -26,6 +26,8 @@ public:
 	Animation punch;
 	Animation kick;
 	Animation jump;
+	bool punchflag = false, kickflag = false;
+	int punchcounter = 0, kickcounter = 0;
 	iPoint position;
 
 };
