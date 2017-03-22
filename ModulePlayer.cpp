@@ -63,30 +63,31 @@ update_status ModulePlayer::Update()
 
 	int speed = 1;
 
-	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_P] == 0)
 	{
-		current_animation = &forward;
-		position.x += speed;
-	}
+		if (App->input->keyboard[SDL_SCANCODE_D] == 1)
+		{
+			current_animation = &forward;
+			position.x += speed;
+		}
 
-	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
-	{
-		current_animation = &backward;
-		position.x -= speed;
+		if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+		{
+			current_animation = &backward;
+			position.x -= speed;
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_W] == 1)
+		{
+			current_animation = &jump;
+		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_P] == 1)
 	{
-		if (App->input->keyboard[SDL_SCANCODE_A] == 0 && App->input->keyboard[SDL_SCANCODE_D] == 0)
-		{
-			current_animation = &punch;
-		}
+		current_animation = &punch;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
-	{
-		current_animation = &jump;
-	}
 	 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();

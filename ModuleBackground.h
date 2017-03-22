@@ -24,6 +24,11 @@ public:
 	SDL_Rect ship;
 	Animation flag;
 	Animation gurl;
+	Animation man_couple;
+	Animation green_boy;
+	Animation blue_gabardine;
+	Animation orange_man;
+	Animation pink_man;
 	int yship = 0;
 	bool ship_flag = false;
 	int frame = 0;

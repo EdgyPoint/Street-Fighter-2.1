@@ -1,13 +1,3 @@
-﻿  ModuleWindow.cpp
-  ModuleTextures.cpp
-  ModuleRender.cpp
-  ModulePlayer.cpp
-  ModuleInput.cpp
-  ModuleBackground.cpp
-  Main.cpp
-  Globals.cpp
-  Application.cpp
-  Generando código...
-  LINK : no se encontró C:\Users\Kistofe\Documents\GitHub\sdl-ryu\Debug\SDL4 Handout.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
-  SDL Game.vcxproj -> C:\Users\Kistofe\Documents\GitHub\sdl-ryu\Debug\SDL4 Handout.exe
-  SDL Game.vcxproj -> C:\Users\Kistofe\Documents\GitHub\sdl-ryu\Debug\SDL4 Handout.pdb (Full PDB)
+﻿  ModuleBackground.cpp
+  SDL Game.vcxproj -> C:\Users\Kistofe\Documents\GitHub\Street-Fighter-2.1\Debug\SDL4 Handout.exe
+  SDL Game.vcxproj -> C:\Users\Kistofe\Documents\GitHub\Street-Fighter-2.1\Debug\SDL4 Handout.pdb (Full PDB)

@@ -37,7 +37,39 @@ ModuleBackground::ModuleBackground()
 	gurl.PushBack({ 624, 16, 32, 52 });
 	gurl.PushBack({ 624, 80, 32, 52 });
 	gurl.PushBack({ 624, 144, 32, 52 });
-	gurl.speed = 0.1f;
+	gurl.PushBack({ 624, 80, 32, 52 });
+	gurl.speed = 0.07f;
+
+	//man couple animation
+	man_couple.PushBack({ 552, 8, 64, 64 });
+	man_couple.PushBack({ 552, 72, 64, 56 });
+	man_couple.PushBack({ 552, 136, 64, 56 });
+	man_couple.speed = 0.07f;
+
+	//green boy animation
+	green_boy.PushBack({ 664, 16, 32, 56 });
+	green_boy.PushBack({ 664, 80, 32, 56 });
+	green_boy.speed = 0.07f;
+
+	//blue gabardine animation
+	blue_gabardine.PushBack({ 704, 16, 48, 56 });
+	blue_gabardine.PushBack({ 704, 80, 48, 56 });
+	blue_gabardine.PushBack({ 704, 144, 48, 56 });
+	blue_gabardine.speed = 0.07f;
+
+	//orange man animation
+	orange_man.PushBack({ 760, 16, 40, 40 });
+	orange_man.PushBack({ 760, 64, 40, 40 });
+	orange_man.PushBack({ 760, 112, 40, 40 });
+	orange_man.speed = 0.07f;
+
+	//pink man animation
+	pink_man.PushBack({ 808, 24, 48, 32 });
+	pink_man.PushBack({ 808, 72, 48, 32 });
+	pink_man.PushBack({ 808, 120, 48, 32 });
+	pink_man.speed = 0.07f;
+
+
 }
 
 ModuleBackground::~ModuleBackground()
@@ -59,7 +91,12 @@ update_status ModuleBackground::Update()
 	App->render->Blit(graphics, 0, 0, &background, 0.75f); // sea and sky
 	App->render->Blit(graphics, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
 	App->render->Blit(graphics, 0, yship, &ship, 0.75f);
-	App->render->Blit(graphics, 192, 104+yship, &(gurl.GetCurrentFrame()), 0.75f); // gurl animation
+	App->render->Blit(graphics, 192, 104 + yship, &(gurl.GetCurrentFrame()), 0.75f); // gurl animation
+	App->render->Blit(graphics, 128, 96 + yship, &(man_couple.GetCurrentFrame()), 0.75f); // man couple animation
+	App->render->Blit(graphics, 224, 104 + yship, &(green_boy.GetCurrentFrame()), 0.75f); // green boy animation
+	App->render->Blit(graphics, 288, 96 + yship, &(blue_gabardine.GetCurrentFrame()), 0.75f); // blue gabardine animation
+	App->render->Blit(graphics, 85, 24 + yship, &(orange_man.GetCurrentFrame()), 0.75f); // orange man animation
+	App->render->Blit(graphics, 128, 25 + yship, &(pink_man.GetCurrentFrame()), 0.75f); // orange man animation
 	App->render->Blit(graphics, 0, 170, &ground);
 	if (frame % 20 == 0)
 	{
