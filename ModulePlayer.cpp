@@ -52,14 +52,14 @@ ModulePlayer::ModulePlayer()
 	kick.speed = 0.2f;
 
 	//jump animation
-	punch.PushBack({ 19, 272, 64, 91 });
-	punch.PushBack({ 108, 272, 92, 91 });
-	punch.PushBack({ 19, 272, 64, 91 });
-	punch.PushBack({ 108, 272, 92, 91 });
-	punch.PushBack({ 19, 272, 64, 91 });
-	punch.PushBack({ 108, 272, 92, 91 });
-	punch.PushBack({ 19, 272, 64, 91 });
-	punch.speed = 0.2f;
+	jump.PushBack({ 20, 847, 55, 85 });
+	jump.PushBack({ 100, 823, 56, 104 });
+	jump.PushBack({ 176, 805, 50, 89 });
+	jump.PushBack({ 251, 798, 54, 77 });
+	jump.PushBack({ 327, 813, 48, 70 });
+	jump.PushBack({ 397, 810, 48, 89 });
+	jump.PushBack({ 464, 819, 55, 109 });
+	jump.speed = 0.2f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -81,7 +81,7 @@ update_status ModulePlayer::Update()
 
 	int speed = 1;
 
-	if (!punchflag && !kickflag)
+	if (!punchflag && !kickflag && !jumpflag)
 	{
 		if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 		{
@@ -133,6 +133,40 @@ update_status ModulePlayer::Update()
 			}
 		}
 	}
+
+	if ((App->input->keyboard[SDL_SCANCODE_W] == 1 && jumpflag == false) || jumpflag == true)
+	{
+		if (jumpcounter <= 45)
+		{
+			current_animation = &jump;
+			jumpflag = true;
+			jumpcounter++;
+			if (position.y > 100 && !gravity)
+			{
+				position.y -= 6;
+			}
+			else
+			{
+				gravity = true;
+				position.y += 6;
+				if (position.y > 220)
+				{
+					position.y = 220;
+				}
+			}
+		}
+		else
+		{
+
+			if (App->input->keyboard[SDL_SCANCODE_W] == 0)
+			{
+				jumpcounter = 0;
+				jumpflag = false;
+				gravity = false;
+			}
+		}
+	}
+
 	 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
